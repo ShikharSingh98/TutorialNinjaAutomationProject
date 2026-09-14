@@ -9,10 +9,9 @@ import utils.CommonUtilities;
 
 import java.time.Duration;
 
-public class TC_RF_001 {
-
+public class TC_RF_003 {
     @Test
-    public void verifyRegisteringAccountUsingMandatoryFields() {
+    public void verifyRegisteringAccountUsingAllFields() {
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
@@ -25,6 +24,7 @@ public class TC_RF_001 {
         driver.findElement(By.id("input-telephone")).sendKeys("1234567890");
         driver.findElement(By.id("input-password")).sendKeys("12345");
         driver.findElement(By.id("input-confirm")).sendKeys("12345");
+        driver.findElement(By.xpath("//input[@type='radio' and @name='newsletter' and @value='1']")).click();
         driver.findElement(By.name("agree")).click();
         driver.findElement(By.xpath("//input[@value='Continue']")).click();
         Assert.assertTrue(driver.findElement(By.xpath("//a[@class='list-group-item' and text()='Logout']")).isDisplayed());
